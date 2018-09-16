@@ -1,0 +1,142 @@
+{
+  "name": "CallTest",
+  "type": "enhanced",
+  "schema": {
+    "indexes": {
+      "search_fields": {
+        "id": {
+          "fields": [
+            "id"
+          ]
+        },
+        "idx_title": {
+          "fields": [
+            "title"
+          ],
+          "analyzer": "chn_standard"
+        },
+        "idx_phone": {
+          "fields": [
+            "phone"
+          ]
+        },
+        "idx_email": {
+          "fields": [
+            "email"
+          ]
+        },
+        "idx_keyword": {
+          "fields": [
+            "title",
+            "remark"
+          ],
+          "analyzer": "chn_standard"
+        },
+        "idx_gmt_created": {
+          "fields": [
+            "gmt_created"
+          ]
+        },
+        "idx_creator": {
+          "fields": [
+            "creator"
+          ]
+        },
+        "idx_all_deal_user": {
+          "fields": [
+            "all_deal_user"
+          ]
+        },
+        "idx_group_ids": {
+          "fields": [
+            "group_ids"
+          ]
+        }
+      },
+      "filter_fields": [
+        "id",
+        "gmt_created",
+        "group_ids",
+        "creator",
+        "phone",
+        "email",
+        "all_deal_user"
+      ]
+    },
+    "tables": {
+      "ordered": {
+        "name": "ordered",
+        "fields": {
+          "id": {
+            "name": "id",
+            "type": "INT",
+            "primary_key": true
+          },
+          "creator": {
+            "name": "creator",
+            "type": "LITERAL",
+            "primary_key": false
+          },
+          "title": {
+            "name": "title",
+            "type": "TEXT",
+            "primary_key": false
+          },
+          "gmt_created": {
+            "name": "gmt_created",
+            "type": "INT",
+            "primary_key": false
+          },
+          "phone": {
+            "name": "phone",
+            "type": "LITERAL",
+            "primary_key": false
+          },
+          "email": {
+            "name": "email",
+            "type": "LITERAL",
+            "primary_key": false
+          },
+          "remark": {
+            "name": "remark",
+            "type": "TEXT",
+            "primary_key": false
+          },
+          "group_ids": {
+            "name": "group_ids",
+            "type": "INT_ARRAY",
+            "primary_key": false
+          },
+          "all_deal_user": {
+            "name": "all_deal_user",
+            "type": "LITERAL_ARRAY",
+            "primary_key": false
+          }
+        },
+        "primary_table": true
+      }
+    },
+    "route_field": null
+  },
+  "data_sources": [],
+  "first_ranks": {},
+  "second_ranks": {},
+  "summary": [],
+  "fetch_fields": [
+    "id",
+    "creator",
+    "title",
+    "gmt_created",
+    "phone",
+    "email",
+    "remark",
+    "group_ids",
+    "all_deal_user"
+  ],
+  "query_processors": {},
+  "quota": {
+    "qps": 6,
+    "doc_size": 0.3
+  },
+  "description": "测试使用"
+}
