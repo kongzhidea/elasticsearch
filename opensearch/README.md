@@ -29,6 +29,7 @@
         * com.kk.opensearch.util.JsonUtil.toJsonString 全量更新
     * UPDATE  部分字段更新
         * JSON.toJSONString()
+        * 如果同步过来的增量文档主键值在对应应用表中不存在，老高级版应用会转ADD，新高级版会报错。
     * DELETE  删除文档
 * [相关性函数-位置查询](https://help.aliyun.com/document_detail/29131.html)
 * 查询
