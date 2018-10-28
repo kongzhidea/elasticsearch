@@ -30,6 +30,7 @@ META-INF
 out
 logs
 classes
+target
 
 *.war
 maven-archiver
