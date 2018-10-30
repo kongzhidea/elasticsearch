@@ -75,6 +75,7 @@ public class DocumentTest extends BaseMode {
         Order order = new Order();
         order.setId(3L);
         order.setCreator("kk202");
+        order.setRemark("i am hello, world");
 
         logger.info(JSON.toJSONString(order));
 

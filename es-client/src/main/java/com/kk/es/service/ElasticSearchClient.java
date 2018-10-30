@@ -264,69 +264,34 @@ public class ElasticSearchClient {
                 .execute()
                 .actionGet();
         SearchHits hits = searchResponse.getHits();
-//        logger.info("查询到记录数=" + hits.getTotalHits());
-//        SearchHit[] searchHists = hits.getHits();
-//        if (searchHists.length > 0) {
-//            for (SearchHit hit : searchHists) {
-//                list.add(hit.getSourceAsString());
-//            }
-//        }
+        log(hits);
         return hits;
     }
 
-//
-//    /**
-//     * 通用搜素。
-//     *
-//     * @param param
-//     * @return
-//     */
-//    public String search(BaseSearchParam param) {
-//
-//        Config config = new Config(Arrays.asList(appName));
-//        config.setStart(param.getPage().getStart());
-//        config.setHits(param.getPage().getPageSize());
-//        config.setSearchFormat(SearchFormat.JSON);
-//
-//        SearchParams searchParams = new SearchParams(config);
-//
-//        // 设定排序方式,字段必须设定为可过滤
-//        if (param.getSorted() != null && param.getSorted().size() > 0) {
-//            Sort sort = new Sort();
-//            for (Sorted s : param.getSorted()) {
-//                if (s.getOrdered() == null || s.getOrdered() == Ordered.DECREASE) {
-//                    sort.addToSortFields(new SortField(s.getField(), Order.DECREASE));
-//                } else {
-//                    sort.addToSortFields(new SortField(s.getField(), Order.INCREASE));
-//                }
-//            }
-//            searchParams.setSort(sort);
-//        }
-//
-//
-//        String queryParam = SearchHelper.buildQueryParam(param);
-//        searchParams.setQuery(queryParam);
-//
-//        String filterParam = SearchHelper.buildFilterParam(param);
-//        searchParams.setFilter(filterParam);
-//
-//        System.out.println(searchParams);
-//
-//        SearcherClient searcherClient = new SearcherClient(serviceClient);
-//
-//        String result = null;
-//        try {
-//            int retryTime = 0;
-//            do {
-//                SearchResult searchResult = searcherClient.execute(searchParams);
-//                result = searchResult.getResult();
-//            } while (!CloudSearchResult.isSuccess(result) && retryTime++ <= RETRY_TIMES);
-//            if (!CloudSearchResult.isSuccess(result)) {
-//                logger.error("OpenseachSearchError, result: {}, params:{}", result, JsonUtil.toJsonString(searchParams));
-//            }
-//        } catch (Exception e) {
-//            logger.error("OpensearchSearchError, params:" + JsonUtil.toJsonString(searchParams), e);
-//        }
-//        return result;
-//    }
+
+    /**
+     * 根据主键id查询，即_id字段。
+     */
+    public SearchHits search(String tableName, QueryBuilder qb, FilterBuilder fb){
+        SearchResponse searchResponse = client.prepareSearch(indexName).setTypes(tableName)
+                .setQuery(qb)
+                .setPostFilter(fb)
+                .execute()
+                .actionGet();
+        SearchHits hits = searchResponse.getHits();
+        log(hits);
+        return hits;
+    }
+
+    private void log(SearchHits hits) {
+        logger.info("查询到记录数=" + hits.getTotalHits());
+        SearchHit[] searchHists = hits.getHits();
+        if (searchHists.length > 0) {
+            for (SearchHit hit : searchHists) {
+//                list.add(hit.getSourceAsString());
+                logger.info(hit.getSourceAsString());
+            }
+        }
+    }
+
 }

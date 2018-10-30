@@ -19,7 +19,7 @@ public class BaseMode {
     private static String indexName = "workorder";
 
     // 日常使用
-    private static String hosts = "192.168.0.103:9300";
+    private static String hosts = "192.168.0.100:9300";
 
     protected ElasticSearchClient client;
     protected String tableName = "order";
