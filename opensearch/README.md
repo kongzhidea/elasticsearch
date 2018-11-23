@@ -47,7 +47,7 @@
                 * 查询title索引字段中包含“北京大学”的文档，要求“北京大学”不能分开，不希望返回类似“北京的大学”的文档；
                     * query=title:"北京大学"
     * [filter](https://help.aliyun.com/document_detail/29158.html)
-        * filter中 数值类型不使用引号，LITERAL 使用双引号，不支持Text类型。
+        * filter中 数值类型不使用引号，LITERAL 使用双引号，不支持Text类型。且必须是属性字段,见应用结构配置。
         * filter 通过列名查询，query通过索引查询。
         * float、double类型因为精度问题无法做精确相等的判断，如有这种场景请，如有这种场景请改用<及>来实现。
         * literal类型的字段值，在filter子句中必须要加双引号（否者会报6135 常量表达式类型错误），支持所有的关系运算，不支持算术运算。
